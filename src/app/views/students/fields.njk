@@ -1,0 +1,65 @@
+<div class="item">
+      <div>Avatar URL</div>
+      <div>
+        <input type="text" name="avatar_url" placeholder="http://" value="{{ student.avatar_url }}">
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Nome</div>
+      <div>
+        <input type="text" name="name" placeholder="Nome do aluno" value="{{ student.name }}">
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Data de nascimento</div>
+      <div>
+        <input type="date" name="birth" value="{{ student.birth }}">
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Email</div>
+      <div>
+        <input type="email" name="email" value="{{ student.email }}">
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Ano escolar</div>
+      <div>
+        <select name="school_year">
+          <option value="5f"
+          {% if student.school_year == "5f" %} selected {% endif %}
+          >5 ano Fundamental</option>
+          <option value="6f"
+          {% if student.school_year == "6f" %} selected {% endif %}
+          >6 ano Fundamental</option>
+          <option value="7f"
+          {% if student.school_year == "7f" %} selected {% endif %}
+          >7 ano Fundamental</option>
+          <option value="8f"
+          {% if student.scholl_year == "8f" %} selected {% endif %}
+          >8 ano Fundamental</option>
+          <option value="1m"
+          {% if student.scholl_year == "1m" %} selected {% endif %}
+          >1 ano Ens. Médio</option>
+          <option value="2m"
+          {% if student.scholl_year == "2m" %} selected {% endif %}
+          >2 ano Ens.Médio</option>
+          <option value="3m"
+          {% if student.scholl_year == "3m" %} selected {% endif %}
+          >3 ano Ens. Médio</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Carga horária semanal</div>
+      <div>
+        <input type="number" name="week" value="{{ student.week }}">
+      </div>
+    </div>
+
+    <button type="submit">Salvar</button>

@@ -1,0 +1,76 @@
+    <div class="item">
+      <div>Avatar URL</div>
+      <div>
+        <input type="text" name="avatar_url" placeholder="http://" value="{{ teacher.avatar_url }}">
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Nome</div>
+      <div>
+        <input type="text" name="name" placeholder="Nome do professor" value="{{ teacher.name }}">
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Data de nascimento</div>
+      <div>
+        <input type="date" name="birth" value="{{ teacher.birth }}">
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Grau de escolaridade</div>
+      <div>
+        <select name="schooling" id="school">
+          <option value="high_school" 
+          {% if teacher.schooling =='Ensino médio completo' %}
+          selected
+          {% endif %}
+          >Ensino Médio Completo</option>
+          <option value="college" 
+          {% if teacher.schooling =='Ensino superior' %}
+          selected
+          {% endif %}
+          >Ensino Superior Completo</option>
+          <option value="master" 
+          {% if teacher.schooling =='Mestrado' %}
+          selected
+          {% endif %}
+          >Mestrado</option>
+          <option value="doctor" 
+          {% if teacher.schooling=='Doutorado' %}
+          selected
+          {% endif %}
+          >Doutorado</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Tipo de aula</div>
+      <div>
+        <span><input type="radio" 
+        name="class_type" 
+        value="P" 
+        {% if teacher.class_type == 'P' %}
+          checked
+        {% endif %}>Presencial</span>
+        <span><input type="radio" 
+        name="class_type" 
+        value="D"
+        {% if teacher.class_type =='D' %}
+          checked
+        {% endif %}>Á distância</span>
+      </div>
+    </div>
+
+     <div class="item">
+      <div>Área de atuação</div>
+      <div>
+        <input type="text" name="subjects" placeholder="Matérias a lecionar" value="{{ teacher.subjects }}">
+      </div>
+    </div>
+
+    
+    <button type="submit">Salvar</button>
