@@ -63,7 +63,7 @@ header {
 
 .card {
   background-color: var(--secondary-color);
-  width: 800px;
+  width: 900px;
   min-height: 400px;
   margin: 45px auto;
 
@@ -301,6 +301,8 @@ tbody tr td:last-child a,
 .table-container tbody tr td:nth-child(3) {
   padding: 16px;
   width: 100px;
+  color: white;
+  text-align: center;
 }
 
 .table-container tbody tr td:nth-child(2) {

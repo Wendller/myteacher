@@ -10,6 +10,7 @@
       <tr>
         <th>Instrutor</th>
         <th>Acompanhamento</th>
+        <th>Alunos</th>
         <th>Ação</th>
       </tr>
     </thead>
@@ -27,6 +28,9 @@
           <div>{{ subject }}</div>
           {% endfor %}
         </td>
+
+        <td>{{ teacher.total_students }}</td>
+
         <td>
           <a href="/teachers/{{ teacher.id }}">Ir para</a>
         </td>
