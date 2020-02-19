@@ -10,7 +10,10 @@ module.exports = {
     });
   },
   create(req, res) {
-    return res.render("students/create")
+
+    Student.teachersSelectOptions(function(options) {
+      return res.render("students/create", { teacherOption: options })
+    });
   },
   post(req, res) {
     const keys = Object.keys(req.body);
