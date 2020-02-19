@@ -332,3 +332,41 @@ tbody tr td:last-child a,
 #acao {
   width: 100px;
 }
+
+
+/* FILTERS */
+.table-container .header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.table-container .header a {
+  width: 120px;
+  font-size: 16px;
+}
+
+.table-container .header form {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-container .header form input {
+  border: 1px solid var(--primary-color);
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+
+.table-container .header form button {
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+}
+
+.table-container .header form button,
+.table-container .header a {
+  margin: 0;
+}
