@@ -53,6 +53,22 @@ module.exports = {
       callback(results.rows[0]);
     });
   },
+  findBy(filter, callback) {
+    db.query(`SELECT teachers.*, count(students) AS total_students FROM teachers LEFT JOIN students ON (students.teacher_id = teachers.id) WHERE teachers.name ILIKE '%${filter}%'  OR teachers.subjects ILIKE '%${filter}%' GROUP BY teachers.id ORDER BY total_students`, function(err, results) {
+      if (err) throw `Database error! ==> ${err}`
+
+      const newList = [];
+      for (teacher of results.rows) {
+        teacher = {
+          ...teacher,
+          subjects: teacher.subjects.split(",")
+        }
+        newList.push(teacher);
+      }
+
+      callback(newList);
+    });
+  },
   update(data, callback) {
     const query = `
       UPDATE teachers SET
