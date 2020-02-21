@@ -111,13 +111,12 @@ module.exports = {
 
       filterQuery = `
         WHERE students.name ILIKE '%${filter}%'
-        OR WHERE students.email ILIKE '%${filter}%'
+        OR students.email ILIKE '%${filter}%'
       `
       totalQuery = `(
         SELECT count(*) FROM students
         ${filterQuery}
-        AS total
-      )`
+        ) AS total`
     }
 
     query = `
