@@ -62,6 +62,7 @@ module.exports = {
       if (!teacher) return res.send("Professor não encontrado!")
 
       teacher.birth = date(teacher.birth).iso;
+      teacher.schooling = graduation(teacher.schooling);
 
       return res.render("teachers/edit", { teacher })
     });
