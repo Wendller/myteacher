@@ -63,7 +63,7 @@ module.exports = {
         school_year=($5),
         week=($6),
         teacher_id = ($7)
-        WHERE id = $8
+      WHERE id = $8
     `
 
     const values = [
@@ -73,8 +73,8 @@ module.exports = {
       data.email,
       data.school_year,
       data.week,
-      data.id,
-      data.teacher
+      data.teacher,
+      data.id
     ]
 
     db.query(query, values, function(err, results) {
@@ -96,6 +96,42 @@ module.exports = {
 
       callback(results.rows);
     })
+  },
+  paginate(params, callback) {
+
+    const { filter, limit, offset } = params;
+
+    let query = "",
+        filterQuery = "",
+        totalQuery = ` (
+          SELECT count(*) FROM students
+        ) AS total`
+
+    if(filter) {
+
+      filterQuery = `
+        WHERE students.name ILIKE '%${filter}%'
+        OR WHERE students.email ILIKE '%${filter}%'
+      `
+      totalQuery = `(
+        SELECT count(*) FROM students
+        ${filterQuery}
+        AS total
+      )`
+    }
+
+    query = `
+      SELECT students.*, ${totalQuery}
+      FROM students
+      ${filterQuery}
+      LIMIT ${limit} OFFSET ${offset} 
+    `
+
+    db.query(query, function(err, results) {
+      if (err) throw `Database error! ==> ${err}`
+
+      callback(results.rows);
+    });
   }
 
 }

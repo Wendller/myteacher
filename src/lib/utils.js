@@ -35,8 +35,8 @@ module.exports = {
        { type: "7f", value: "7 ano Ens. Fundamental" },
        { type: "8f", value: "8 ano Ens. Fundamental" },
        { type: "1m", value: "1 ano Ens. Médio" },
-       { type: "2m", value: "6 ano Ens. Médio" },
-       { type: "3m", value: "7 ano Ens. Médio" } 
+       { type: "2m", value: "2 ano Ens. Médio" },
+       { type: "3m", value: "3 ano Ens. Médio" } 
     ];
 
     for (level of schooling) {
