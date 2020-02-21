@@ -103,6 +103,51 @@ module.exports = {
 
       return callback();
     });
+  },
+  paginate(params, callback) {
+    const { filter, limit, offset } = params;
+
+    //? Pegando numero total de teachers
+    let query = "",
+        filterQuery = "",
+        totalQuery = ` (
+          SELECT count(*) FROM teachers
+        ) AS total`
+
+    if(filter) {
+      filterQuery = `
+        WHERE teachers.name ILIKE '%${filter}%'
+        OR WHERE teachers.subjects ILIKE '%${filter}%'
+      `
+      totalQuery = `(
+        SELECT count(*) FROM teachers
+        ${filterQuery}
+      ) AS total`
+    }
+
+    query = `
+      SELECT teachers.*, ${totalQuery}, count(students) AS total_students
+      FROM teachers
+      LEFT JOIN students ON (teachers.id = students.teacher_id)
+      ${filterQuery}
+      GROUP BY teachers.id LIMIT ${limit} OFFSET ${offset}
+    `
+
+    db.query(query, function(err, results) {
+      if (err) throw `Database error! ==> ${err}`
+
+      const newList = [];                     
+      for (teacher of results.rows) {          
+        teacher = {
+          ...teacher,
+          services: teacher.subjects.split(",") 
+        }
+        newList.push(teacher);
+      }
+
+      callback(newList);
+
+    });
   }
 
 }
