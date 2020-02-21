@@ -28,7 +28,7 @@ module.exports = {
         created_at,
         avatar_url
       ) VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING name
+      RETURNING id
     `
     const values = [
       data.name,
@@ -140,7 +140,7 @@ module.exports = {
       for (teacher of results.rows) {          
         teacher = {
           ...teacher,
-          services: teacher.subjects.split(",") 
+          subjects: teacher.subjects.split(",") 
         }
         newList.push(teacher);
       }
